@@ -1,0 +1,93 @@
+visible_hostname cachea.linekong.com
+http_port 80 vhost vport
+cache_peer 115.182.54.173 parent 80 0 no-query originserver no-digest round-robin
+cache_peer 115.182.54.81 parent 80 0 no-query originserver no-digest round-robin
+cache_peer 42.62.124.47 parent 80 0 no-query originserver no-digest round-robin
+cache_peer 42.62.124.65 parent 80 0 no-query originserver no-digest round-robin
+cache_peer 42.62.124.97 parent 80 0 no-query originserver no-digest
+cache_peer 42.62.124.162 parent 80 0 no-query originserver no-digest round-robin
+cache_peer 42.62.124.144 parent 80 0 no-query originserver no-digest round-robin
+cache_peer 42.62.124.64 parent 80 0 no-query originserver no-digest round-robin
+cache_peer 42.62.124.73 parent 80 0 no-query originserver no-digest round-robin
+#cache_peer 59.151.39.133 parent 80 0 no-query originserver no-digest round-robin
+acl web_editor urlpath_regex \/editors\/
+acl web_admin urlpath_regex \/admin\/
+cache_peer_access  42.62.124.47 deny web_editor  
+cache_peer_access  42.62.124.47 deny web_admin
+cache_peer_access  42.62.124.65 deny web_editor  
+cache_peer_access  42.62.124.65 deny web_admin
+cache_peer_access  42.62.124.162 deny web_editor  
+cache_peer_access  42.62.124.162 deny web_admin
+cache_peer_access  42.62.124.144 deny web_editor  
+cache_peer_access  42.62.124.144 deny web_admin
+cache_peer_access  42.62.124.64 deny web_editor  
+cache_peer_access  42.62.124.64 deny web_admin
+cache_peer_access  42.62.124.73 deny web_editor  
+cache_peer_access  42.62.124.73 deny web_admin
+cache_peer_access  115.182.54.81 deny web_editor  
+cache_peer_access  115.182.54.81 deny web_admin
+cache_peer_access  115.182.54.173 deny web_editor  
+cache_peer_access  115.182.54.173 deny web_admin
+cache_peer_access  42.62.124.97 deny web_editor  
+cache_peer_access  42.62.124.97 deny web_admin
+#cache_peer_access  59.151.39.133 deny web_editor  
+#cache_peer_access  59.151.39.133 deny web_admin
+cache_peer_domain 115.182.54.173 img.linekong.com
+cache_peer_domain 115.182.54.81 img.linekong.com
+#cache_peer_domain 59.151.39.133 api.king.union.8864.com
+cache_peer_domain 42.62.124.47 !sdkapi.8864.com !bbs.f.8864.com !bbs.zqsg.8864.com !zqsg.8864.com !bbs.szr.8864.com !fs.8864.com !szr.8864.com !weixin.8864.com !bbs.x.8864.com !fj.8864.com !x.8864.com !8864.com !sgyy.8864.com !k2.8864.com !k.8864.com !hssg.8864.com !hysj.8864.com !www.8864.com !sg.8864.com !hxsg.8864.com !hx.8864.com !bbs.k.8864.com !bbs.lm.8864.com !bbs.sg.8864.com !bbs.8864.com !bbs.rx.8864.com !bbs.sxd.8864.com !bbs.dx.8864.com !bbs.xy.8864.com !bbs.yb.8864.com !bbs.yt.8864.com !bbs.ss.8864.com !bbs.kx.8864.com !bbs.ms.8864.com !bbs.dxxd.8864.com !bbs.yt2.8864.com !bbs.dxxd2.8864.com !lm.8864.com !dxxd.8864.com !ms.8864.com !yt2.8864.com !dxxd2.8864.com !ss.8864.com !kx.8864.com !ipad.8864.com !xy.8864.com !yt.8864.com !yb.8864.com !sxd.8864.com !dx.8864.com !rx.8864.com .8864.com login.huoying.com t.rz.linekong.com activate.lianyun.huoying.com login.hysj.g.1360.com login.hysj.game.yy.com .huoying.renren.com .hysj.51.com .hy.wan.sogou.com .hysj.yourenwan.com .hysj.yrwan.com .iwan4399.com .hysj.hupu.com .hysj.kumi.cn .hysj.wan.taobao.com login.hysj.mop.com .webgame.xunlei.com .hysj.jiandanwan.com .hysj.chinanetjoy.com .hy.175wan.com .hysj.0807g.com .hysj.616wan.com .hy.dbh123.net .lelidou.com .hysj.gamepaopao.com .hysj.1212wan.com .hysj.766z.com .huoying.92you.com .hysj.accgame.com .hysj.kedou.com .hysj.cespc.com .hysj.uu178.com .hysj.01yo.com .hysj.gopuu.com .hysj.3651wan.com .hysj.91yx.com .hysj.un18.com .91y.com.cn .hysj.ux18.com .g.baofeng.com .hysj.975game.com .92y.com.cn .hysj.youximenhu.com.cn .hysj.358wan.com .me4399.com .hysj.63wan.com .sgyy.g.1360.com .yysg.game.yy.com .hysj.youxi.pchome.net .sgyy.g.pptv.com .sgyy.37wanwan.com .game.qidian.com .sgyy.niu.xunlei.com .sg.pps.tv .hysj.qq.cc .sg.1377.com .sgyy.91wan.com .91wan.sgyy.8864.com .sgyy.yaowan.com .sgyy.maxthon.cn .sgyy.9377.com .sg.wan.rising.cn .sgyy.iugame.cn hssg.game.yy.com login.hssg.g.1360.com .hssg.g.1360.com .sgyy.yrwan.com .sgyy.wanwan.sina.com .sgyy.wan.sogou.com .sgyy.wan.xoyo.com .sgyy.wan.liebao.cn .sgyy.jj.cn .sgyy.kuaiwan.com .sgyy.smggame.net .hysj.game.zixia.com .hysj.play800.com .sgyy.5599.com .sgyy.1135.com.cn .hysj.789hi.com .sgyy.65wan.com .sgyy.37wan.com .sgyy.sosowan.com .game.zongheng.com .sgyy.008wan.com .sanguo.wanwan.sina.com .sgyy.007wan.com .hysj.76ju.com .sgyy.game.xilu.com .sgyy.175wan.com .sgyy.huoyan.com .sgyy.huolawan.com .sgyy.game.zixia.com .sgyy.0807g.com .sgyy.hupu.com .sg.zhulang.com .hy.1377.com .sgyy.kuwo.cn .sgyy.ifeng.com .sgyy.2800.com .sgyy.dajiawan.com .play800.com .sgyy.92you.com .sgyy.8wan.com .sgyy.hly.com .sgyy.96pk.com .wan.sdo.com .sgyy.9tyou.com .sgyy.yeyou.com .sgyy.975game.com .hysj.17lailai.com .sgyy.kedou.com .sgyy.jinjuzi.com .sgyy.jjjgame.com .sgyy.bigzhu.com .sg.1000you.com .sgyy.1000you.com .sgyy.zhigame.com .sgyy.youxigaga.com .sgyy.99yx.com .san.178.com .sgyy.game.funshion.com .sanguoyanyi.03you.com .sgyy.tymmo.com .sgyy.game.5173.com .sg.game214.com .sgyy.17lailai.com .sgyy.mop.com .sgyy.game.kugou.com .g.baofeng.com .hysj.u17.com .sgyy.666wan.com .sgyy.renren.com .sgyy.game.7bao.com .hysj.9511.com .sgyy.9511.com .sgyy.1000z.com baidu.sgyy.union.8864.com .hysj.1000z.com .sg.6173.com .sgyy.bielaiwan.com .sgyy.lehihi.com .sg.game80.com.cn .sgyy.63wan.com .sgyy.yeele.cn .hysj.yx.a9vg.com suning.sgyy.union.8864.com .sgyy.youxi567.com .sgyy.hao2u.com .sgyy.12wanwan.com .sgyy.yx.a9vg.com .sgyy.yeyegame.com .sgyy.1799.com .sgyy.67you.com .sgyy.358wan.com .sgyy.aipai.com .hysj.5317wan.com .sgyy.qq990.com .sgyy.8558.com login.lm.8864.com .san.1797wan.com deal.lm.wan.liebao.cn .hysj.joqoo.com .sg.bingc.cn .sgyy.dakawang.com .sgyy.game.readnovel.com .sgyy.yeyou.mop.com .sg.pk66.com api.x.union.8864.com mjcq.union.8864.com deal.lmzg.175173.com login.szr.8864.com api.szr.union.8864.com login.n.8864.com api.n.union.8864.com login.f.8864.com api.f.union.8864.com login.tf.8864.com api.tf.union.8864.com deal.lm.biligame.com api.y.union.8864.com .9292wan.com .sgyy.teeqee.com api.fs.union.8864.com api.common.union.8864.com api.qtds.union.8864.com api.z.union.8864.com api.xx.union.8864.com .sdo.sgyy.8864.com api.dt.union.8864.com api.vr3d.union.8864.com api.sw.union.8864.com api.xq.union.8864.com
+cache_peer_domain 42.62.124.65 !sdkapi.8864.com !bbs.f.8864.com !bbs.zqsg.8864.com !zqsg.8864.com !bbs.szr.8864.com !fs.8864.com !szr.8864.com !weixin.8864.com !bbs.x.8864.com !fj.8864.com !x.8864.com !8864.com !sgyy.8864.com !k2.8864.com !k.8864.com !hssg.8864.com !hysj.8864.com !www.8864.com !sg.8864.com !hxsg.8864.com !hx.8864.com !bbs.k.8864.com !bbs.lm.8864.com !bbs.sg.8864.com !bbs.8864.com !bbs.rx.8864.com !bbs.sxd.8864.com !bbs.dx.8864.com !bbs.xy.8864.com !bbs.yb.8864.com !bbs.yt.8864.com !bbs.ss.8864.com !bbs.kx.8864.com !bbs.ms.8864.com !bbs.dxxd.8864.com !bbs.yt2.8864.com !bbs.dxxd2.8864.com !lm.8864.com !dxxd.8864.com !ms.8864.com !yt2.8864.com !dxxd2.8864.com !ss.8864.com !kx.8864.com !ipad.8864.com !xy.8864.com !yt.8864.com !yb.8864.com !sxd.8864.com !dx.8864.com !rx.8864.com .8864.com login.huoying.com t.rz.linekong.com activate.lianyun.huoying.com login.hysj.g.1360.com login.hysj.game.yy.com .huoying.renren.com .hysj.51.com .hy.wan.sogou.com .hysj.yourenwan.com .hysj.yrwan.com .iwan4399.com .hysj.hupu.com .hysj.kumi.cn .hysj.wan.taobao.com login.hysj.mop.com .webgame.xunlei.com .hysj.jiandanwan.com .hysj.chinanetjoy.com .hy.175wan.com .hysj.0807g.com .hysj.616wan.com .hy.dbh123.net .lelidou.com .hysj.gamepaopao.com .hysj.1212wan.com .hysj.766z.com .huoying.92you.com .hysj.accgame.com .hysj.kedou.com .hysj.cespc.com .hysj.uu178.com .hysj.01yo.com .hysj.gopuu.com .hysj.3651wan.com .hysj.91yx.com .hysj.un18.com .91y.com.cn .hysj.ux18.com .g.baofeng.com .hysj.975game.com .92y.com.cn .hysj.youximenhu.com.cn .hysj.358wan.com .me4399.com .hysj.63wan.com .sgyy.g.1360.com .yysg.game.yy.com .hysj.youxi.pchome.net .sgyy.g.pptv.com .sgyy.37wanwan.com .game.qidian.com .sgyy.niu.xunlei.com .sg.pps.tv .hysj.qq.cc .sg.1377.com .sgyy.91wan.com .91wan.sgyy.8864.com .sgyy.yaowan.com .sgyy.maxthon.cn .sgyy.9377.com .sg.wan.rising.cn .sgyy.iugame.cn hssg.game.yy.com login.hssg.g.1360.com .hssg.g.1360.com .sgyy.yrwan.com .sgyy.wanwan.sina.com .sgyy.wan.sogou.com .sgyy.wan.xoyo.com .sgyy.wan.liebao.cn .sgyy.jj.cn .sgyy.kuaiwan.com .sgyy.smggame.net .hysj.game.zixia.com .hysj.play800.com .sgyy.5599.com .sgyy.1135.com.cn .hysj.789hi.com .sgyy.65wan.com .sgyy.37wan.com .sgyy.sosowan.com .game.zongheng.com .sgyy.008wan.com .sanguo.wanwan.sina.com .sgyy.007wan.com .hysj.76ju.com .sgyy.game.xilu.com .sgyy.175wan.com .sgyy.huoyan.com .sgyy.huolawan.com .sgyy.game.zixia.com .sgyy.0807g.com .sgyy.hupu.com .sg.zhulang.com .hy.1377.com .sgyy.kuwo.cn .sgyy.ifeng.com .sgyy.2800.com .sgyy.dajiawan.com .play800.com .sgyy.92you.com .sgyy.8wan.com .sgyy.hly.com .sgyy.96pk.com .wan.sdo.com .sgyy.9tyou.com .sgyy.yeyou.com .sgyy.975game.com .hysj.17lailai.com .sgyy.kedou.com .sgyy.jinjuzi.com .sgyy.jjjgame.com .sgyy.bigzhu.com .sg.1000you.com .sgyy.1000you.com .sgyy.zhigame.com .sgyy.youxigaga.com .sgyy.99yx.com .san.178.com .sgyy.game.funshion.com .sanguoyanyi.03you.com .sgyy.tymmo.com .sgyy.game.5173.com .sg.game214.com .sgyy.17lailai.com .sgyy.mop.com .sgyy.game.kugou.com .g.baofeng.com .hysj.u17.com .sgyy.666wan.com .sgyy.renren.com .sgyy.game.7bao.com .hysj.9511.com .sgyy.9511.com .sgyy.1000z.com baidu.sgyy.union.8864.com .hysj.1000z.com .sg.6173.com .sgyy.bielaiwan.com .sgyy.lehihi.com .sg.game80.com.cn .sgyy.63wan.com .sgyy.yeele.cn .hysj.yx.a9vg.com suning.sgyy.union.8864.com .sgyy.youxi567.com .sgyy.hao2u.com .sgyy.12wanwan.com .sgyy.yx.a9vg.com .sgyy.yeyegame.com .sgyy.1799.com .sgyy.67you.com .sgyy.358wan.com .sgyy.aipai.com .hysj.5317wan.com .sgyy.qq990.com .sgyy.8558.com login.lm.8864.com .san.1797wan.com deal.lm.wan.liebao.cn .hysj.joqoo.com .sg.bingc.cn .sgyy.dakawang.com .sgyy.game.readnovel.com .sgyy.yeyou.mop.com .sg.pk66.com api.x.union.8864.com mjcq.union.8864.com deal.lmzg.175173.com login.szr.8864.com api.szr.union.8864.com login.n.8864.com api.n.union.8864.com login.f.8864.com api.f.union.8864.com login.tf.8864.com api.tf.union.8864.com deal.lm.biligame.com api.y.union.8864.com .9292wan.com .sgyy.teeqee.com api.fs.union.8864.com api.common.union.8864.com api.qtds.union.8864.com api.z.union.8864.com api.xx.union.8864.com .sdo.sgyy.8864.com api.dt.union.8864.com api.vr3d.union.8864.com api.sw.union.8864.com api.xq.union.8864.com
+cache_peer_domain 42.62.124.97 bbs.f.8864.com bbs.zqsg.8864.com bbs.fs.8864.com bbs.szr.8864.com bbs.x.8864.com bbs.k.8864.com bbs.8864.com bbs.lm.8864.com bbs.lm.linekong.com bbs.yt.linekong.com bbs.yt.8864.com bbs.xy.linekong.com bbs.xy.8864.com bbs.yb.linekong.com bbs.yb.8864.com bbs.ss.linekong.com bbs.ss.8864.com bbs.kl.linekong.com bbs.db.linekong.com bbs.kx.linekong.com bbs.kx.8864.com bbs.linekong.com bbs.dxxd.linekong.com bbs.dxxd.8864.com bbs.yt2.linekong.com bbs.yt2.8864.com bbs.rx.linekong.com bbs.rx.8864.com bbs.fr.linekong.com bbs.ms.linekong.com bbs.ms.8864.com bbs.huoying.com bbs.dx.linekong.com bbs.dx.8864.com bbs.dxxd2.linekong.com bbs.dxxd2.8864.com bbs.sxd.linekong.com bbs.sxd.8864.com bbs.sg.8864.com bbs.zs.linekong.com
+cache_peer_domain 42.62.124.162 huodong.8864.com ka.8864.com f.8864.com zqsg.8864.com fs.8864.com szr.8864.com abaogame.com .abaogame.com !bbs.x.8864.com fj.8864.com x.8864.com !login.lm.8864.com !t.rz.linekong.com !login.huoying.com !img.linekong.com !activate.lianyun.huoying.com !bbs.lm.linekong.com !bbs.zs.linekong.com !bbs.sxd.linekong.com !bbs.dxxd2.linekong.com !bbs.dx.linekong.com !bbs.huoying.com !bbs.ms.linekong.com !bbs.fr.linekong.com !bbs.rx.linekong.com !bbs.yt2.linekong.com !bbs.dxxd.linekong.com !bbs.linekong.com !bbs.kx.linekong.com !bbs.db.linekong.com !bbs.kl.linekong.com !bbs.ss.linekong.com !bbs.yb.linekong.com !bbs.xy.linekong.com !bbs.yt.linekong.com www.aeilmcbnu5052.com k.8864.com k2.8864.com hssg.8864.com hysj.8864.com dx.8864.com hx.8864.com hxsg.8864.com lm.8864.com rx.8864.com sgyy.8864.com sg.8864.com sxd.8864.com www.8864.com dxxd2.8864.com dxxd.8864.com ipad.8864.com kx.8864.com ms.8864.com ss.8864.com xy.8864.com yb.8864.com yt2.8864.com yt.8864.com 8864.com sdkapi.8864.com linekong.com huoying.com .huoying.com .linekong.com .haoweixin.com .tomoon.cn weixin.8864.com 
+cache_peer_domain 42.62.124.144 huodong.8864.com ka.8864.com !www.linekong.com f.8864.com zqsg.8864.com fs.8864.com szr.8864.com abaogame.com .abaogame.com !bbs.x.8864.com fj.8864.com x.8864.com !login.lm.8864.com !t.rz.linekong.com !login.huoying.com !img.linekong.com !activate.lianyun.huoying.com !bbs.lm.linekong.com !bbs.zs.linekong.com !bbs.sxd.linekong.com !bbs.dxxd2.linekong.com !bbs.dx.linekong.com !bbs.huoying.com !bbs.ms.linekong.com !bbs.fr.linekong.com !bbs.rx.linekong.com !bbs.yt2.linekong.com !bbs.dxxd.linekong.com !bbs.linekong.com !bbs.kx.linekong.com !bbs.db.linekong.com !bbs.kl.linekong.com !bbs.ss.linekong.com !bbs.yb.linekong.com !bbs.xy.linekong.com !bbs.yt.linekong.com www.aeilmcbnu5052.com k.8864.com k2.8864.com hssg.8864.com hysj.8864.com dx.8864.com hx.8864.com hxsg.8864.com lm.8864.com rx.8864.com sgyy.8864.com sg.8864.com sxd.8864.com www.8864.com dxxd2.8864.com dxxd.8864.com ipad.8864.com kx.8864.com ms.8864.com ss.8864.com xy.8864.com yb.8864.com yt2.8864.com yt.8864.com 8864.com sdkapi.8864.com  linekong.com huoying.com .huoying.com .linekong.com .haoweixin.com .tomoon.cn weixin.8864.com
+cache_peer_domain 42.62.124.64 huodong.8864.com ka.8864.com !www.linekong.com f.8864.com zqsg.8864.com fs.8864.com szr.8864.com abaogame.com .abaogame.com !bbs.x.8864.com fj.8864.com x.8864.com !login.lm.8864.com !t.rz.linekong.com !login.huoying.com !img.linekong.com !activate.lianyun.huoying.com !bbs.lm.linekong.com !bbs.zs.linekong.com !bbs.sxd.linekong.com !bbs.dxxd2.linekong.com !bbs.dx.linekong.com !bbs.huoying.com !bbs.ms.linekong.com !bbs.fr.linekong.com !bbs.rx.linekong.com !bbs.yt2.linekong.com !bbs.dxxd.linekong.com !bbs.linekong.com !bbs.kx.linekong.com !bbs.db.linekong.com !bbs.kl.linekong.com !bbs.ss.linekong.com !bbs.yb.linekong.com !bbs.xy.linekong.com !bbs.yt.linekong.com www.aeilmcbnu5052.com k.8864.com k2.8864.com hssg.8864.com hysj.8864.com dx.8864.com hx.8864.com hxsg.8864.com lm.8864.com rx.8864.com sgyy.8864.com sg.8864.com sxd.8864.com www.8864.com dxxd2.8864.com dxxd.8864.com ipad.8864.com kx.8864.com ms.8864.com ss.8864.com xy.8864.com yb.8864.com yt2.8864.com yt.8864.com 8864.com sdkapi.8864.com  linekong.com huoying.com .huoying.com .linekong.com .haoweixin.com .tomoon.cn weixin.8864.com
+cache_peer_domain 42.62.124.73 !www.linekong.com f.8864.com zqsg.8864.com fs.8864.com szr.8864.com abaogame.com .abaogame.com !bbs.x.8864.com fj.8864.com x.8864.com !login.lm.8864.com !t.rz.linekong.com !login.huoying.com !img.linekong.com !activate.lianyun.huoying.com !bbs.lm.linekong.com !bbs.zs.linekong.com !bbs.sxd.linekong.com !bbs.dxxd2.linekong.com !bbs.dx.linekong.com !bbs.huoying.com !bbs.ms.linekong.com !bbs.fr.linekong.com !bbs.rx.linekong.com !bbs.yt2.linekong.com !bbs.dxxd.linekong.com !bbs.linekong.com !bbs.kx.linekong.com !bbs.db.linekong.com !bbs.kl.linekong.com !bbs.ss.linekong.com !bbs.yb.linekong.com !bbs.xy.linekong.com !bbs.yt.linekong.com www.aeilmcbnu5052.com k.8864.com k2.8864.com hssg.8864.com hysj.8864.com dx.8864.com hx.8864.com hxsg.8864.com lm.8864.com rx.8864.com sgyy.8864.com sg.8864.com sxd.8864.com www.8864.com dxxd2.8864.com dxxd.8864.com ipad.8864.com kx.8864.com ms.8864.com ss.8864.com xy.8864.com yb.8864.com yt2.8864.com yt.8864.com 8864.com sdkapi.8864.com  linekong.com huoying.com .huoying.com .linekong.com .haoweixin.com .tomoon.cn weixin.8864.com
+acl QUERY urlpath_regex cgi-bin \? \.php
+acl weball dstdomain .linekong.com .huoying.com .8864.com
+refresh_pattern -i \.(jpg|jpeg|gif|bmp|png|js|swf|htm|html|shtml)$ 1440 80% 2880 reload-into-ims
+refresh_pattern .               0       20%     4320
+cache deny QUERY
+cache_vary on
+cache_mem 2048 MB
+maximum_object_size 4096 KB
+minimum_object_size 0 KB
+maximum_object_size_in_memory 128 KB
+request_header_max_size 8 KB
+cache_dir ufs /cache 409600 16 256
+logformat logreport %{Host}>h %>a %ui %un [%tl] "%rm %ru HTTP/%rv" %Hs %<st "%{Referer}>h" "%{User-Agent}>h" m%tr %Ss:%Sh %{X-Forwarded-For:,0}>h
+logformat combined %>a %ui %un [%tl] "%rm %ru HTTP/%rv" %Hs %<st "%{Referer}>h" "%{User-Agent}>h" %Ss:%Sh %{host}>h
+access_log /cache/access.log combined weball
+strip_query_terms off
+cache_log /cache/cache.log
+cache_store_log /dev/null
+acl all src 0.0.0.0/0.0.0.0
+acl mynet src 192.168.1.0/255.255.255.0
+acl office src 113.208.129.56 113.208.129.49-113.208.129.51 203.86.88.177 119.146.188.202
+#acl updatebbs src 113.208.129.56 113.208.129.49-113.208.129.51
+#acl ytbbs dstdomain  bbs.yt.linekong.com
+acl dstnet dst 59.151.39.128/255.255.255.192
+acl manager proto cache_object
+acl localhost src 115.182.54.18/255.255.255.255
+acl httpd_ports port 80
+acl purge method PURGE
+http_access allow manager localhost
+http_access allow purge localhost
+http_access deny manager
+http_access deny purge
+http_access deny !httpd_ports
+http_access deny web_editor !office
+http_access deny web_admin !office
+#http_access deny ytbbs !updatebbs
+http_access allow mynet
+http_access allow all httpd_ports
+http_access allow dstnet
+http_access deny all
+#deny_info http://yt.linekong.com/maintenance updatebbs
+reply_header_max_size 64 KB
+reply_body_max_size 0 allow all
+cache_mgr admin
+memory_pools_limit 100 MB
+forwarded_for on
+negative_ttl 5 seconds
+logfile_rotate 2
+via off

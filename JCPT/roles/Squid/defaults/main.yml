@@ -1,0 +1,56 @@
+---
+# defaults file for squid
+Squid_Source_Package_Name: squid-2.6.STABLE19
+Squid_Configure_Optional: "--prefix=/usr/local/squid --with-maxfd=81920 --with-large-files"
+Squid_Port:
+  - 80
+
+
+# local subnets
+squid3_localnets:
+  - 10.0.0.0/8
+
+squid3_sslports:
+  - 443
+
+squid3_diskcache: 'ufs /var/spool/squid3 100 16 256'
+
+squid3_safeports:
+  - 80          # http
+  - 21          # ftp
+  - 443         # https
+  - 70          # gopher
+  - 210         # wais
+  - 1025-65535  # unregistered ports
+  - 280         # http-mgmt
+  - 488         # gss-http
+  - 591         # filemaker
+  - 777         # multiling http
+
+squid3_port: 3128
+squid3_outgoing_adress: ''
+squid3_visible_hostname: 'proxy.example.com'
+
+squid3_acls:
+  ### default ###
+  - { name: 'CONNECT', type: 'method', arg: 'CONNECT' }
+  ### default ###
+
+squid3_http_access:
+  ### default ###
+  - { perm: 'deny', aclname: '!Safe_ports' }
+  - { perm: 'deny', aclname: 'CONNECT !SSL_ports' }
+  - { perm: 'allow', aclname: 'localhost manager' }
+  - { perm: 'deny', aclname: 'manager' }
+  - { perm: 'allow', aclname: 'localnet' }
+  - { perm: 'allow', aclname: 'localhost' }
+  - { perm: 'deny', aclname: 'all' }
+  ### default ###
+
+squid3_refresh_pattern:
+  ### default ###
+  - { case_sensitive: '', regex: '^ftp:', min: '1440', percent: '20%', max: '10080', opts: '' }
+  - { case_sensitive: '', regex: '^gopher:', min: '1440', percent: '10%', max: '1440', opts: '' }
+  - { case_sensitive: '-i', regex: '(/cgi-bin/|\?):', min: '0', percent: '0%', max: '0', opts: '' }
+  - { case_sensitive: '', regex: '.', min: '0', percent: '20%', max: '4320', opts: '' }
+  ### default ###

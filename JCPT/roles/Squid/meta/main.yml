@@ -1,0 +1,22 @@
+galaxy_info:
+  author: Charlie.Cui
+  description: Squid Proxy Installation
+  company: LineKong
+  license: license (BSD)
+  min_ansible_version: 1.9
+
+  platforms:
+  - name: EL
+    versions:
+    - 7
+  - name: Ubuntu
+    versions:
+    - xenial
+  galaxy_tags:
+    - web
+    - squid
+
+  categories:
+    - web
+
+dependencies: []

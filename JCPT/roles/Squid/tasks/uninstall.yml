@@ -1,0 +1,60 @@
+---
+# tasks file for squid
+#
+- name: Check Squid Port
+  raw: lsof -i:{{ Squid_Port }}|grep squid |awk '{print $1}'
+  tags:
+    - uninstall
+
+- name: Stop Squid Serivce
+  service: name=squid state=stopped
+  register: Stop_Squid
+  notify: Stop Squid.Service
+  ignore_errors: True 
+  tags:
+    - uninstall
+
+- name: Delete Squid's Systemd File
+  file: path=/lib/systemd/system/squid.service state=absent
+  ignore_errors: True 
+  tags:       
+    - uninstall 
+
+- name: Delete Source Package On Target Host
+  file: path=/usr/local/src/{{ Squid_Source_Package_Name }}.tar.bz2 state=absent
+  tags: 
+    - uninstall
+
+- name: Delete Source Package Directory On Target Host       
+  file: path=/usr/local/src/{{ Squid_Source_Package_Name }} state=absent
+  tags:        
+    - uninstall
+
+- name: Delete Cache Directory
+  file: path=/cache state=absent
+  ignore_errors: True 
+  tags:
+    - uninstall
+
+- name: Delete Squid To The Launch Of Boot
+  shell: systemctl disable squid
+  ignore_errors: True 
+  tags:       
+    - uninstall
+
+- name: Delete Squid's Init Scripts
+  file: path=/etc/init.d/squid state=absent                                                                                                                                   
+  ignore_errors: True 
+  tags:
+    - uninstall
+
+- name: Delete Squid Software Directory       
+  file: path=/usr/local/squid state=absent
+  ignore_errors: True 
+  tags:              
+    - uninstall 
+
+- name: Print Install Result
+  debug: msg="Stop Squid Sucess" 
+  tags:
+    - uninstall

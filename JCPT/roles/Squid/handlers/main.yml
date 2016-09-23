@@ -1,0 +1,11 @@
+---
+# handlers file for squid
+#
+- name: Check
+  debug: msg="{{ Copy_Source_Package_To_Target_Host_Result }}"
+
+- name: Restart Squid.Service
+  service: name=squid state=restarted
+
+- name: Stop Squid.Service
+  service: name=squid state=stopped

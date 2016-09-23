@@ -1,0 +1,14 @@
+[Unit]
+Description=Squid caching proxy
+After=syslog.target network.target nss-lookup.target
+
+[Service]
+Type=forking
+LimitNOFILE=16384
+#EnvironmentFile=/etc/sysconfig/squid
+ExecStart=/etc/init.d/squid start
+ExecReload=/etc/init.d/squid reload
+ExecStop=/etc/init.d/squid stop
+
+[Install]
+WantedBy=multi-user.target
