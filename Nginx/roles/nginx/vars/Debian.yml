@@ -1,0 +1,11 @@
+---
+# vars file for nginx
+
+DepandPackage:
+  - 'gcc'
+  - 'make'
+  - 'openssl'
+  - 'libssl-dev'
+  - 'libpcre3'
+  - 'libpcre3-dev'
+  - 'lsof'

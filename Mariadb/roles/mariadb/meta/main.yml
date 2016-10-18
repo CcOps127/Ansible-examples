@@ -1,0 +1,19 @@
+galaxy_info:
+  author: Charlie.Cui
+  description: General Mariadb Installation
+  company: LineKong
+  license: license (BSD)
+  min_ansible_version: 1.9
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - xenial
+
+  galaxy_tags:
+    - db
+
+  categories:
+    - db
+
+dependencies: []

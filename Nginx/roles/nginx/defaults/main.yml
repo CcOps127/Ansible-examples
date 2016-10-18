@@ -1,0 +1,111 @@
+---
+# defaults file for nginx
+
+
+## INSTALL
+SourcePackage: 
+  - "nginx-1.10.1.tar.gz"
+Nginx_User: 'nobody'
+Nginx_SourcePackage: 'nginx-1.10.1'
+Nginx_ConfigureOptional: '--prefix=/usr/local/nginx --with-http_ssl_module  --with-http_stub_status_module --with-pcre --with-http_gzip_static_module --with-pcre'
+Nginx_Service: 'nginx'
+
+# Vhost
+VhostDomain:
+  - domain: 'ansible.illlusion.github.io'
+    listen: '80 default_server'
+    root: '/home/website/ansible.illlusion.github.io'
+    server_name: 'ansible.illlusion.github.io'
+    index: 'index.html'
+    proxy_path: '/'
+    proxy_address: 'http://172.16.11.210:80'
+
+## CONFIG 
+Nginx_Port: 80
+Nginx_Pid: 'logs/nginx.pid'
+Nginx_Error_Log: 'logs/error.log  notice'
+Nginx_WorkerRlimit_Nofile: 65535
+Nginx_Worker_Connections: 10240
+
+Proxy_Cache_dir:
+  - "/cache/proxy_temp"
+  - "/cache/proxy_cache"
+
+HTTP_Options: |
+    include       mime.types;
+        default_type  application/octet-stream;
+        server_names_hash_bucket_size 128;
+        client_header_buffer_size 32k;
+        client_body_buffer_size 32k;
+        client_max_body_size 8m;	
+        large_client_header_buffers 4 32k;
+        log_format access  '$remote_addr - $remote_user [$time_local] "$request" '
+                          '$status $body_bytes_sent "$http_referer" '
+                          '"$http_user_agent" "$http_x_forwarded_for"';
+        index index.php index.html;
+        autoindex off;
+        fastcgi_intercept_errors on;	
+        access_log  logs/access.log  access;
+        sendfile        on;
+        tcp_nopush     on;
+        tcp_nodelay    off;
+        keepalive_timeout  65;
+
+# Gzip
+#Extra_Gzip_Options: |
+#    gzip  on;
+#        gzip_min_length  1k;
+#        gzip_http_version 1.0;
+#        gzip_comp_level 2;
+#        gzip_buffers  4 16k;
+#        gzip_proxied any;
+#        gzip_disable "MSIE [1-6]\.";
+#        gzip_types  text/plain text/css application/x-javascript application/xml application/xml+rss text/javascript;
+#        gzip_vary  on;
+
+# Proxy
+#Extra_Proxy_Options: |
+#    proxy_connect_timeout 5;
+#        proxy_send_timeout 60;
+#        proxy_read_timeout 5;
+#        proxy_buffer_size 32k;
+#        proxy_buffers 4 64k;
+#        proxy_busy_buffers_size 128k;
+#        proxy_temp_file_write_size 128k;
+#        proxy_ignore_client_abort on;
+#        proxy_headers_hash_max_size 51200;
+#        proxy_headers_hash_bucket_size 6400;
+#        proxy_temp_path   /cache/proxy_temp 1 2;
+#        proxy_cache_path  /cache/proxy_cache levels=1:2 keys_zone=cache_one:200m inactive=1d max_size=10g;
+#        proxy_cache_key $host$uri$is_args$args;
+#        proxy_set_header  Host		$host;
+#        proxy_set_header  X-Real-IP 	$remote_addr;	
+#        proxy_set_header  x-forwarded-for	$proxy_add_x_forwarded_for;
+
+
+#Extra_Fastcgi_Options: |
+#    fastcgi_connect_timeout 300;
+#        fastcgi_send_timeout 300;
+#        fastcgi_read_timeout 300;
+#        fastcgi_buffer_size  64k;
+#        fastcgi_buffers 4 64k;
+#        fastcgi_busy_buffers_size 128k;
+#        fastcgi_temp_file_write_size 128k;
+#
+
+#Vhost_Location: |
+#    location / {
+#              try_files $uri $uri/ /index.php?$args;
+#        }
+#        location ~ .*\.(php)?$ {
+#            expires 1s;
+#            try_files $uri = 404;
+#            fastcgi_split_path_info ^(.+\.php)(/.+)$;
+#            include fastcgi_params;
+#            fastcgi_param PATH_INFO $fastcgi_path_info;
+#            fastcgi_index index.php;
+#            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+#            fastcgi_pass 127.0.0.1:9000;
+#        }
+
+

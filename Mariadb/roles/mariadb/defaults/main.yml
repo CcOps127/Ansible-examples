@@ -1,0 +1,59 @@
+---
+# defaults file mariadb
+MariaDB_DepandPackage:
+  - 'gcc'
+  - 'g++'
+  - 'make'
+  - 'cmake'
+  - 'openssl'
+  - 'libssl-dev'
+  - 'libncurses5*'
+  - 'ncurses-dev'
+  - 'bison'
+  - 'libreadline6'
+  - 'libreadline6-dev'
+  - 'python-mysqldb'
+
+Mariadb_User: 
+  - name: 'mysql'
+    shell: '/usr/sbin/nologin'
+    group: 'mysql'
+
+Mariadb_SourcePackage: 'mariadb-10.1.14'
+
+Mariadb_Configure_Optional: '-DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/usr/local/mysql/data -DMYSQL_UNIX_ADDR=/tmp/mysql.sock -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DWITH_EXTRA_CHARSETS=all -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITH_BLACKHOLE_STORAGE_ENGINE=1 -DWITH_PARTITION_STORAGE_ENGINE=1 -DWITH_READLINE=1 -DWITH_EMBEDDED_SERVER=1 -DENABLED_LOCAL_INFILE=1 -DWITH_SSL=system'
+
+Mariadb_Port: 3306
+
+Mariadb_Dir: '/usr/local/mysql'
+
+Mariadb_socket: '/tmp/mysql.sock'
+
+Mariadb_AnonyousUser:
+  - name: 'root'
+    mysql:
+      password: ''
+      hosts: 
+        - "{{ ansible_hostname }}" 
+        - "127.0.0.1" 
+        - "::1" 
+      privs: ''
+      state: 'absent'
+  - name: ' '
+    mysql:
+      password: ' '
+      hosts:
+        - "{{ ansible_hostname }}"
+        - 'localhost'
+      privs: ''
+      state: 'absent'
+
+Mariadb_PrivUser:
+  - name: 'root'
+    mysql:
+      password: '8ql6,yhY'
+      hosts: 
+        - 'localhost'
+      privs:
+        - '*.*:ALL'
+      state: 'present'

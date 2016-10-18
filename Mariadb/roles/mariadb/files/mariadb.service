@@ -1,0 +1,33 @@
+#
+# /etc/systemd/system/mariadb.service
+#
+[Unit]
+Description=MariaDB database server
+After=network.target
+After=syslog.target
+
+[Install]
+WantedBy=multi-user.target
+Alias=mysql.service
+Alias=mysqld.service
+
+[Service]
+User=mysql
+Group=mysql
+Type=forking
+PrivateNetwork=false
+
+PIDFile=/var/run/mysqld/mysqld.pid
+
+#Execute pre and post scripts as root
+PermissionsStartOnly=true
+
+# Start main service  
+ExecStart=/etc/init.d/mysqld start
+ExecReload=/etc/init.d/mysqld reload
+ExecStop=/etc/init.d/mysqld stop
+
+# Give up if ping don't get an answer  
+TimeoutSec=600  
+Restart=always  
+PrivateTmp=fals

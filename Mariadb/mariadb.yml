@@ -1,0 +1,6 @@
+---
+- name: Mariadb Installation
+  hosts: mariadb
+  remote_user: root
+  roles: 
+    - mariadb

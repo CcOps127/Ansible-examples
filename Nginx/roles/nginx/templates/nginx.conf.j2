@@ -1,0 +1,40 @@
+user  {{ Nginx_User }};
+worker_processes  {{ ansible_processor_vcpus | default(ansible_processor_count)  }};  
+{% if  ansible_processor_vcpus | default(ansible_processor_count) == 8 %}
+worker_cpu_affinity 00000001 00000010 00000100 00001000 00010000 00100000 01000000 1000000;
+{% elif ansible_processor_vcpus | default(ansible_processor_count) == 4 %} 
+worker_cpu_affinity 0001 0010 0100 1000;
+{% elif ansible_processor_vcpus | default(ansible_processor_count) == 2 %}                                                                                                                               
+worker_cpu_affinity 01 10;
+{%endif%}
+
+worker_rlimit_nofile {{ Nginx_WorkerRlimit_Nofile }};
+
+error_log  {{ Nginx_Error_Log }};
+
+pid        {{ Nginx_Pid }};
+
+events {
+    use epoll;
+    worker_connections  {{ Nginx_Worker_Connections }};
+}
+
+http {
+{% if  HTTP_Options %}
+    {{ HTTP_Options }} 
+{% endif %}
+
+{% if  Extra_Gzip_Options is defined %}
+    {{ Extra_Gzip_Options }}
+{% endif %}
+
+{% if  Extra_Fastcgi_Options is defined %}
+    {{ Extra_Fastcgi_Options }}
+{% endif %}
+
+{% if Extra_Proxy_Options is defined %}
+    {{ Extra_Proxy_Options }}
+{% endif %}
+
+    include /usr/local/nginx/conf/vhost/*.conf;
+}

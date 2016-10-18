@@ -1,0 +1,4 @@
+---
+# tasks file for mariadb
+- include: install.yml
+- include: uninstall.yml

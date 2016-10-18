@@ -1,0 +1,95 @@
+- name: Include OS Specific Variables
+  include_vars: "{{ ansible_os_family }}.yml"
+  tags:
+    - install
+
+- name: Install Depand On The Package
+  apt: name={{ item }} state=present
+  with_items: "{{ DepandPackage }}"
+  when: ansible_os_family == "Debian" and ansible_distribution_version|int >=16
+  tags:
+    - install
+
+- name: Install Depand On The Package
+  yum: name={{ item }} state=present
+  with_items: "{{ DepandPackage }}"
+  when: ansible_os_family == "RedHat" and ansible_distribution_version|int >=7
+  tags:
+    - install
+
+- name: Copy SourcePackage To Target Host
+  copy: src={{ item }} dest=/usr/local/src/ 
+  with_items: "{{ SourcePackage }}"
+  tags:
+    - install
+
+- name: Uncompression Source Package
+  raw: cd /usr/local/src && tar -zxf {{ Nginx_SourcePackage }}.tar.gz
+  tags:
+    - install
+
+- name: Configure Source Code for Nginx
+  raw: cd /usr/local/src/{{ Nginx_SourcePackage }} && ./configure {{ Nginx_ConfigureOptional }}
+  tags:
+    - install
+
+- name: Compile Source Code for Nginx
+  raw: cd /usr/local/src/{{ Nginx_SourcePackage }} && make && make install
+  tags:
+    - install
+
+- name: Copy Nginx's Systemd File
+  copy: src=nginx.service dest=/lib/systemd/system/nginx.service owner=root group=root mode=0755
+  tags:
+    - install
+
+- name: Create Vhost Directory
+  file: path=/usr/local/nginx/conf/vhost state=directory owner=root group=root mode=0775
+  tags:
+    - install
+
+- name: Create WebSite Directory
+  file: path=/home/website/{{ item.domain }} state=directory owner=root group=root mode=0775
+  with_items: "{{ VhostDomain }}"
+  tags:
+    - install
+
+- name: Create Proxy Cache Dir
+  file: path={{ item }} state=directory mode=644 owner={{ Nginx_User }} group={{ Nginx_User }}
+  with_items: "{{ Proxy_Cache_dir }}"
+  when: Extra_Proxy_Options is defined
+  tags:
+    - install
+
+- name: Copy Nginx's Config File
+  template: src=nginx.conf.j2 dest=/usr/local/nginx/conf/nginx.conf owner=root group=root mode=0644
+  notify: Restart Nginx.Service
+  tags:
+    - install
+    - service
+
+- name: Copy Vhost Config Files
+  template: src=vhost.conf.j2 dest=/usr/local/nginx/conf/vhost/{{ item.domain }}.conf owner=root group=root mode=0644
+  with_items: "{{ VhostDomain }}"
+  notify: Restart Nginx.Service
+  tags:
+   - install
+   - service 
+
+- name: Ensure Nginx Service Is Started And Enabled On Boot
+  service: name=nginx state=started enabled=yes
+  tags:
+    - install
+    - service
+   
+- name: Check Nginx Port
+  shell: lsof -i:80 |grep nginx |awk '{print $1}'|uniq
+  register: Check_Nginx_Port_Result
+  tags:      
+    - install
+
+- name: Print Install Result
+  debug: msg="Install Nginx Sucess" 
+  when: Check_Nginx_Port_Result.stdout == 'nginx'
+  tags:
+    - install 

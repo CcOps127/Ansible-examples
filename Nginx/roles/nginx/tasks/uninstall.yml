@@ -1,0 +1,54 @@
+- name: Check Nginx Port
+  raw: lsof -i:{{ Nginx_Port }}|grep nginx |awk '{print $1}'|uniq
+  tags:
+    - uninstall
+
+- name: Stop Nginx Serivce
+  service: name={{ Nginx_Service }} state=stopped
+  notify: Stop Nginx.Service
+  ignore_errors: True 
+  tags:
+    - uninstall
+
+- name: Delete Squid To The Launch Of Boot
+  shell: systemctl disable nginx
+  ignore_errors: True 
+  tags:       
+    - uninstall
+
+- name: Delete Nginx's Systemd File
+  file: path=/lib/systemd/system/nginx.service state=absent
+  ignore_errors: True 
+  tags:       
+    - uninstall 
+
+- name: Delete SourcePackage On Target Host
+  file: path=/usr/local/src/{{ item }} state=absent
+  with_items: "SourcePackage"
+  tags: 
+    - uninstall
+
+- name: Delete SourcePackage Directory On Target Host       
+  file: path=/usr/local/src/{{ Nginx_SourcePackage }} state=absent
+  tags:        
+    - uninstall
+
+- name: Delete Vhost Directory
+  file: path=/home/website/{{ item.domain }} state=absent
+  with_items: "{{ VhostDomain }}"
+  ignore_errors: True 
+  tags:
+    - uninstall
+
+- name: Delete Proxy Cache Dir
+  file: path={{ item }} state=directory mode=644 owner={{ Nginx_User }} group={{ Nginx_User }}
+  with_items: "{{ Proxy_Cache_dir }}"
+  when: Extra_Proxy_Options is defined                                                                                                                                                                                                                          
+  tags:
+    - uninstall
+
+- name: Delete Nginx Software Directory       
+  file: path=/usr/local/nginx state=absent
+  ignore_errors: True 
+  tags:              
+    - uninstall 

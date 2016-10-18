@@ -1,6 +1,0 @@
----
-- hosts: all
-  remote_user: root
-  gather_facts: True
-  roles:
-    - Squid

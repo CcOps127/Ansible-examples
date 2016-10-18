@@ -1,0 +1,4 @@
+---
+# handlers file for mariadb
+- name: Restart_Mariadb.service 
+  service: name=mysqld state=restarted

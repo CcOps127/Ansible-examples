@@ -1,0 +1,27 @@
+{% for vhost in VhostDomain %}
+server {
+        listen {{ vhost.listen | default('80 default_server') }};
+{% if vhost.server_name is defined %}
+        server_name  {{ vhost.server_name }}
+{% endif %}
+{% if vhost.root is defined %} 
+        root {{ vhost.root }};
+{% endif %}
+{% if vhost.index is defined %} 
+        index {{ vhost.index }};
+{% endif%}
+{% if Extra_Fastcgi_Options is defined %}
+    {{ Vhost_Location}}
+{% endif%}     
+{% if Extra_Proxy_Options is defined %}
+    location {{ vhost.proxy_path}} {
+        proxy_pass  {{ vhost.proxy_address }};
+    }
+{% endif%}
+
+{% if vhost.server_name is defined %}
+        access_log logs/{{ vhost.server_name }}_access.log access;
+        error_log logs/{{ vhost.server_name }}_error.log;
+{% endif %}
+}
+{% endfor %}

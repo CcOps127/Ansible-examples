@@ -1,0 +1,63 @@
+# tasks file for MariaDB uninstallation Or Ununinstall
+
+
+- name: Stop Mariadb Service  And Disabled On Boot
+  service: name=mysqld state=stopped enabled=no
+  tags:
+    - uninstall
+    - db
+
+- name: Delete Mysql User 
+  user: name={{ item['name'] }} shell={{ item['shell'] }} state=absent
+  with_items: "{{ Mariadb_User }}"
+  tags:
+    - uninstall
+    - db
+
+- name: Delete SourcePackage on Target Host
+  file: path=/usr/local/src/{{ Mariadb_SourcePackage }}.tar.gz state=absent
+  tags:
+    - uninstall
+    - db
+
+- name: Delete SourcePackage Directory
+  file: path=/usr/local/src/{{ Mariadb_SourcePackage }} state=absent
+  tags:
+    - uninstall
+    - db
+
+- name: Delete InitScript
+  file: path=/etc/init.d/mysqld state=absent
+  tags:
+    - uninstall
+    - db
+
+- name: Delete Systemd Mariadb.service
+  file: path=/lib/systemd/system/mariadb.service state=absent 
+  tags:
+    - uninstall
+    - db
+
+- name: Delete Configfile My.cnf
+  file: path=/etc/my.cnf state=absent
+  tags:
+    - uninstall
+    - db
+
+- name: Delete Mariadb Directory
+  file: path=/usr/local/mysql/ state=absent 
+  tags:
+    - uninstall
+    - db
+
+- name: Delete Mariadb Environment On Host
+  raw:  rm -f /etc/profile.d/mariadb.sh && source /etc/profile
+  tags:
+    - uninstall
+    - db
+
+- name: Delete .my.cnf File With Root Password Credentials
+  file: path=~/.my.cnf state=absent
+  tags:
+    - uninstall
+    - db
