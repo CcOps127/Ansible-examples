@@ -33,12 +33,6 @@
 - name: Install Nginx
   shell: cd /usr/local/src/nginx-1.12.0 && ./configure --prefix=/data/nginx --with-http_ssl_module --with-pcre --with-http_gzip_static_module && make && make install 
 
-- name: Sysconfig spawn-fcgi 
-  copy: src=config/nginx/sysconfig.spawn-fcgi dest=/etc/sysconfig/spawn-fcgi owner=root group=root mode=644
-
-- name: init scripts fow spawn-fcgi
-  copy: src=config/nginx/init.spawn-fcgi dest=/etc/init.d/spawn-fcgi owner=root group=root mode=0755
-
 - name: Copy Nginx Config Files
   copy: src=config/nginx/nginx.conf dest=/data/nginx/conf/ owner=root group=root mode=0644
 
