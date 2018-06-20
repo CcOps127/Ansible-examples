@@ -1,0 +1,28 @@
+---
+# vars file for smokeping
+Depand_Packages:
+  - 'gcc'
+  - 'make'
+  - 'sendmail'
+  - 'rrdtool'
+  - 'perl-rrdtool'
+  - 'perl-core'
+  - 'perl-Net-SSLeay'
+  - 'rsync'
+  - 'zlib'
+  - 'zlib-devel'
+  - 'openssl'
+  - 'openssl-devel'
+  - 'libevent'
+  - 'libevent-devel'
+  - 'pcre'
+  - 'pcre-devel' 
+  - 'epel-release'
+EPEL_Packages:
+  - 'spawn-fcgi'
+  - 'supervisor'
+
+Data_Directory:
+  - '/data/smokeping/htdocs/cache'
+  - '/data/smokeping/data'
+  - '/data/smokeping/var'
